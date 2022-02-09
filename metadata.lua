@@ -1,0 +1,16 @@
+return PlaceObj('ModDef', {
+	'title', "Hydrolysis Reactor",
+	'description', "TBD",
+	'last_changes', "TBD",
+	'id', "L8ABBVI",
+	'pops_desktop_uuid', "8738a3d7-d970-4f74-8c2a-4e53c85b071d",
+	'pops_any_uuid', "17c1ba2f-8bf5-4e29-b561-775ac45bc85b",
+	'author', "Fizzle_Fuze",
+	'version_major', 1,
+	'version_minor', 1,
+	'version', 2,
+	'lua_revision', 1009413,
+	'saved_with_revision', 1010838,
+	'saved', 1644446095,
+	'TagBuildings', true,
+})
