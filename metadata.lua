@@ -2,7 +2,7 @@ return PlaceObj('ModDef', {
 	'title', "Hydrolysis Reactor",
 	'description', "TBD",
 	'image', "thumbnail.png",
-	'last_changes', "TBD",
+	'last_changes', "",
 	'ignore_files', {
 		"*.git/*",
 		"*.svn/*",

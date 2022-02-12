@@ -141,11 +141,13 @@ function HydrolysisReactor:OnDepositDepleted(deposit)
 end
 
 function HydrolysisReactor:UpdateElectricityProduction()
-    if type(self.upgrades_built) == "table" then -- to avoid error in self:HasUpgrade >=(
-        if self:HasUpgrade("HydrolysisReactor_AdvancedReactions") and self:IsUpgradeOn("HydrolysisReactor_AdvancedReactions") then
-            self:SetBase("electricity_production", 2 * self.air_production)
-        end
+    --if type(self.upgrades_built) == "table" then -- to avoid error in self:HasUpgrade >=(
+    if self:HasUpgrade("HydrolysisReactor_AdvancedReactions") and self:IsUpgradeOn("HydrolysisReactor_AdvancedReactions") then
+        self:SetBase("electricity_production", 2 * self.air_production)
+    else
+        self:SetBase("electricity_production", 0)
     end
+    --end
 end
 
 function HydrolysisReactor:OnSetWorking(working)

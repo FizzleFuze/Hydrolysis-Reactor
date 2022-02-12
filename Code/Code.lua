@@ -36,15 +36,20 @@ For more information on this, and how to apply and follow the GNU AGPL, see
 local ModName = "["..CurrentModDef.title.."]"
 
 --translation strings
-local TID = {}
-local TStr = {}
+local Translate = { ID = {}, Text = {} }
 
-TID['MoxieDisable'] = RandomLocId()
+Translate.Text['MoxieDisable'] = "Replaced by Hydrolysis Reactor."
 
-TStr['MoxieDisable'] = "Replaced by Hydrolysis Reactor."
+--get every string a unique ID
+for k, _ in pairs(Translate.Text) do
+    Translate.ID[k] = RandomLocId()
+    if not Translate.ID[k] then
+        Log("ERROR", "Could not find valid translation ID for '", k, "'!")
+    end
+end
 
 --logging variables
-local Debugging = true
+local Debugging = false
 
 --print log messages to console and disk
 local function PrintLog()
@@ -157,14 +162,13 @@ local function UpdateOptions()
     end
 
     if DisableMOXIE then
-    TID['MoxieDisable'] = RandomLocId()
-    LockBuilding("MOXIE", "disable", T(TID['MoxieDisable'], TStr['MoxieDisable']))
+        LockBuilding("MOXIE", "disable", T(Translate.ID['MoxieDisable'], Translate.Text['MoxieDisable']))
     else
-    RemoveBuildingLock("MOXIE")
+        RemoveBuildingLock("MOXIE")
     end
 
     Log("FINISH UpdateOptions()")
-    end
+end
 
 --event handling
 function OnMsg.NewHour()
