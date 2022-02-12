@@ -1,8 +1,8 @@
 return PlaceObj('ModDef', {
 	'title', "Hydrolysis Reactor",
-	'description', "TBD",
+	'description', "",
 	'image', "thumbnail.png",
-	'last_changes', "",
+	'last_changes', "https://github.com/FizzleFuze/Hydrolysis-Reactor/blob/master/changelog.md",
 	'ignore_files', {
 		"*.git/*",
 		"*.svn/*",
