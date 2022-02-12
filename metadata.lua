@@ -26,6 +26,7 @@ return PlaceObj('ModDef', {
 		"Code/Code.lua",
 		"Code/HydrolysisReactor.lua",
 	},
+	'has_options', true,
 	'saved', 1644615402,
 	'TagBuildings', true,
 })

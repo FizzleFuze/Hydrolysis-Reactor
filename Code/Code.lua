@@ -35,8 +35,16 @@ For more information on this, and how to apply and follow the GNU AGPL, see
 --mod name
 local ModName = "["..CurrentModDef.title.."]"
 
+--translation strings
+local TID = {}
+local TStr = {}
+
+TID['MoxieDisable'] = RandomLocId()
+
+TStr['MoxieDisable'] = "Replaced by Hydrolysis Reactor."
+
 --logging variables
-local Debugging, Info = false, false
+local Debugging = true
 
 --print log messages to console and disk
 local function PrintLog()
@@ -115,16 +123,48 @@ local function UnlockUpgrade(Upgrade)
     end
 end
 
---unlock upgrade if already researched
+--setup options and config
 local function UpdateOptions()
+    local DisableMOXIE = CurrentModOptions:GetProperty("DisableMOXIE")
+    local Entity
     Log("BEGIN UpdateOptions()")
+
+    if IsDlcAccessible("picard") then
+        Entity = "Electrolyzer"
+    elseif IsDlcAccessible("contentpack3") then
+        Entity = WaterExtractorCP3
+    end
+
+    if Entity and ClassTemplates.Building.FFHydrolysisReactor then
+        Log("Updating Class Template...")
+        ClassTemplates.Building.FFHydrolysisReactor.entity = Entity
+    end
+
+    if UICity then
+        if UICity.labels.FFHydrolysisReactor then
+            Log("Updating entity of existing reactors...")
+            for _, HR in ipairs(UICity.labels.FFHydrolysisReactor) do
+                HR:ChangeEntity(Entity)
+            end
+        end
+    end
 
     if IsTechResearched("NuclearFusion") then
         UnlockUpgrade("HydrolysisReactor_AdvancedReactions")
     end
+    if IsTechResearched("MoistureFarming") then
+        UnlockUpgrade("HydrolysisReactor_MoistureFarming")
+    end
+
+    if DisableMOXIE then
+    TID['MoxieDisable'] = RandomLocId()
+    LockBuilding("MOXIE", "disable", T(TID['MoxieDisable'], TStr['MoxieDisable']))
+    else
+    RemoveBuildingLock("MOXIE")
+    end
 
     Log("FINISH UpdateOptions()")
-end
+    end
 
 --event handling
 function OnMsg.NewHour()
@@ -146,12 +186,17 @@ function OnMsg.ApplyModOptions(id)
 end
 
 --event handling
+OnMsg.ModsReloaded = UpdateOptions
 OnMsg.CityStart = UpdateOptions
 OnMsg.LoadGame = UpdateOptions
 
 --event handling
 function OnMsg.TechResearched(tech_id, _, first_time)
+    Log("Tech, FirstTime = ", tech_id, ", ", first_time)
     if tech_id == "NuclearFusion" and first_time then
         UnlockUpgrade("HydrolysisReactor_AdvancedReactions")
+    end
+    if tech_id == "MoistureFarming" and first_time then
+        UnlockUpgrade("HydrolysisReactor_MoistureFarming")
     end
 end

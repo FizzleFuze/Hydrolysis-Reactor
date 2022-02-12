@@ -37,8 +37,29 @@ local function Log(...)
         Fizzle_FuzeLogMessage("BuildingTemplate", ...)
 end
 
+--translation strings
+local Translate = { ID = {}, Text = {} }
+
+Translate.Text['display_name'] = "Hydrolysis Reactor"
+Translate.Text['display_name_pl'] = "Hydrolysis Reactors"
+Translate.Text['description'] = "Extracts Oxygen from Water.<newline><newline>All extractors raise dust resulting in more frequent maintenance for buildings in the grey area."
+Translate.Text['upgrade2_display_name'] = "Advanced Reactions"
+Translate.Text['upgrade2_description'] = "Advanced Reactions allow excess energy from hydrogen atoms to be used in the power grid."
+Translate.Text['upgrade3_display_name'] = "Moisture Farming"
+Translate.Text['upgrade3_description'] = "Allows reactors to take moisture from the atmosphere to produce more oxygen and power."
+Translate.Text['encyclopedia_text'] = "Uses the power of science to extract oxygen from water."
+
+--get every string a unique ID
+for k, _ in pairs(Translate.Text) do
+        Translate.ID[k] = RandomLocId()
+        if not Translate.ID[k] then
+                Log("ERROR", "Could not find valid translation ID for '", k, "'!")
+        end
+end
+
 function OnMsg.ClassesPostprocess()
         Log("Adding BT")
+
         PlaceObj('BuildingTemplate', {
                 'comment', "Hydrolysis Reactor",
                 'Group', "Life-Support",
@@ -53,7 +74,7 @@ function OnMsg.ClassesPostprocess()
                 'construction_cost_MachineParts', 2000,
                 'build_points', 1500,
                 'is_tall', true,
-                'dome_forbidden', true,
+                'dome_forbidden', false,
                 'upgrade1_id', "MOXIE_MagneticFiltering",
                 'upgrade1_display_name', T(396174688820, --[[ModItemBuildingTemplate FF-Hydrolysis-Reactor upgrade1_display_name]] "Magnetic Filtering"),
                 'upgrade1_description', T(936522085574, --[[ModItemBuildingTemplate FF-Hydrolysis-Reactor upgrade1_description]] "+<upgrade1_mul_value_1>% Production."),
@@ -64,29 +85,36 @@ function OnMsg.ClassesPostprocess()
                 'upgrade1_upgrade_cost_Concrete', 2000,
                 'upgrade1_upgrade_cost_Polymers', 5000,
                 'upgrade2_id', "HydrolysisReactor_AdvancedReactions",
-                'upgrade2_display_name', T(283750368009, --[[ModItemBuildingTemplate FF-Hydrolysis-Reactor upgrade2_display_name]] "Advanced Reactions"),
-                'upgrade2_description', T(389227548729, --[[ModItemBuildingTemplate FF-Hydrolysis-Reactor upgrade2_description]] "Advanced Reactions allow excess energy from hydrogen atoms to be used in the power grid."),
+                'upgrade2_display_name', T(Translate.ID['upgrade2_display_name'], Translate.Text['upgrade2_display_name']),
+                'upgrade2_description', T(Translate.ID['upgrade2_description'], Translate.Text['upgrade2_description']),
                 'upgrade2_icon', CurrentModPath.."/UI/Icons/eternal_fusion_01.png",
                 'upgrade2_mod_prop_id_1', "electricity_production",
-                'upgrade2_add_value_1', 5000,
-                'upgrade2_mod_label_2', "Electrolyzer",
+                'upgrade2_add_value_1', 0,
                 'upgrade2_upgrade_cost_Electronics', 2000,
                 'upgrade2_upgrade_cost_PreciousMetals', 1000,
+                'upgrade3_id', "HydrolysisReactor_MoistureFarming",
+                'upgrade3_display_name', T(Translate.ID['upgrade3_display_name'], Translate.Text['upgrade3_display_name']),
+                'upgrade3_description', T(Translate.ID['upgrade3_description'], Translate.Text['upgrade3_description']),
+                'upgrade3_icon', CurrentModPath.."/UI/Icons/hygroscopic_coating_01.png",
+                'upgrade3_mod_prop_id_1', "air_production",
+                'upgrade3_mul_value_1', 50,
+                'upgrade3_upgrade_cost_Metals', 2000,
+                'upgrade3_upgrade_cost_Polymers', 5000,
                 'maintenance_resource_type', "MachineParts",
                 'maintenance_resource_amount', 2000,
                 'maintenance_threshold_base', 150000,
                 'sight_category', "Additional Buildings",
-                'sight_satisfaction', 4,
-                'display_name', T(104611007046, --[[ModItemBuildingTemplate FF-Hydrolysis-Reactor display_name]] "Hydrolysis Reactor"),
-                'display_name_pl', T(403732333077, --[[ModItemBuildingTemplate FF-Hydrolysis-Reactor display_name_pl]] "Hydrolysis Reactors"),
-                'description', T(304423732938, --[[ModItemBuildingTemplate FF-Hydrolysis-Reactor description]] "Extracts Oxygen from Water.<newline><newline>All extractors raise dust resulting in more frequent maintenance for buildings in the grey area."),
+                'sight_satisfaction', 5,
+                'display_name', T(Translate.ID['display_name'], Translate.Text['display_name']),
+                'display_name_pl', T(Translate.ID['display_name_pl'], Translate.Text['display_name_pl']),
+                'description', T(Translate.ID['description'], Translate.Text['description']),
                 'build_category', "Life-Support",
                 'display_icon', CurrentModPath.."/UI/Icons/electrolyzer.png",
                 'build_pos', 5,
-                'entity', "Electrolyzer",
+                'entity', "Moxie",
                 'show_range', true,
                 'encyclopedia_id', "HydrolysisReactor",
-                'encyclopedia_text', T(553973227132, --[[ModItemBuildingTemplate FF-Hydrolysis-Reactor encyclopedia_text]] "Uses the power of science to extract oxygen from water."),
+                'encyclopedia_text', T(Translate.ID['encyclopedia_text'], Translate.Text['encyclopedia_text']),
                 'encyclopedia_image', "UI/Encyclopedia/Electrolyzer.tga",
                 'label1', "OutsideBuildings",
                 'label2', "OutsideBuildingsTargets",

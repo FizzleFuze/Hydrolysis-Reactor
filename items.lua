@@ -11,4 +11,11 @@ PlaceObj('ModItemCode', {
 	'name', "HydrolysisReactor",
 	'FileName', "Code/HydrolysisReactor.lua",
 }),
+PlaceObj('ModItemOptionToggle', {
+	'name', "DisableMOXIE",
+	'comment', "DisableMOXIE",
+	'DisplayName', "Disable MOXIEs",
+	'Help', "Disable MOXIEs from being built and working",
+	'DefaultValue', false,
+}),
 }

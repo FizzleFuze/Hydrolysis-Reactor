@@ -34,7 +34,7 @@ For more information on this, and how to apply and follow the GNU AGPL, see
 
 --wrapper logging function for this file
 local function Log(...)
-    Fizzle_FuzeLogMessage("Hydrolysis Reactor", ...)
+    Fizzle_FuzeLogMessage("HydrolysisReactor", ...)
 end
 
 DefineClass.HydrolysisReactor = {
@@ -140,14 +140,25 @@ function HydrolysisReactor:OnDepositDepleted(deposit)
     self:DepositChanged()
 end
 
+function HydrolysisReactor:UpdateElectricityProduction()
+    if type(self.upgrades_built) == "table" then -- to avoid error in self:HasUpgrade >=(
+        if self:HasUpgrade("HydrolysisReactor_AdvancedReactions") and self:IsUpgradeOn("HydrolysisReactor_AdvancedReactions") then
+            self:SetBase("electricity_production", 2 * self.air_production)
+        end
+    end
+end
+
 function HydrolysisReactor:OnSetWorking(working)
     Building.OnSetWorking(self, working)
     AirProducer.OnSetWorking(self, working)
     ElectricityProducer.OnSetWorking(self, working)
+
     local production = working and self.water_production or 0
     if self.water then
         self.water:SetProduction(production, production)
     end
+
+    self:UpdateElectricityProduction()
 end
 
 function HydrolysisReactor:IsIdle()
@@ -165,6 +176,10 @@ function HydrolysisReactor:UpdateAttachedSigns()
     end
 end
 
+function HydrolysisReactor:OnUpgradeToggled()
+    self:UpdateElectricityProduction()
+end
+
 function HydrolysisReactor:OnModifiableValueChanged(prop)
     Log("prop = ", prop)
     if prop == "water_production" and self.water then
@@ -175,10 +190,11 @@ function HydrolysisReactor:OnModifiableValueChanged(prop)
     if prop == "air_production" and self.air then
         self.air:SetProduction(self.working and self.air_production or 0)
         Log("val = ", self.air_production)
+
+        self:UpdateElectricityProduction()
     end
     if (prop == "electricity_production" or prop == "performance") and self.electricity then
         Log("val = ", self.electricity_production)
         self.electricity:SetProduction(self.working and self:GetPerformanceModifiedElectricityProduction() or 0)
     end
 end
-
