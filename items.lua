@@ -16,6 +16,5 @@ PlaceObj('ModItemOptionToggle', {
 	'comment', "DisableMOXIE",
 	'DisplayName', "Disable MOXIEs",
 	'Help', "Disable MOXIEs from being built and working",
-	'DefaultValue', false,
 }),
 }

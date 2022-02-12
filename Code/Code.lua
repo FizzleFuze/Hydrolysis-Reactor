@@ -152,13 +152,13 @@ local function UpdateOptions()
                 HR:ChangeEntity(Entity)
             end
         end
-    end
 
-    if IsTechResearched("NuclearFusion") then
-        UnlockUpgrade("HydrolysisReactor_AdvancedReactions")
-    end
-    if IsTechResearched("MoistureFarming") then
-        UnlockUpgrade("HydrolysisReactor_MoistureFarming")
+        if IsTechResearched("NuclearFusion") then
+            UnlockUpgrade("HydrolysisReactor_AdvancedReactions")
+        end
+        if IsTechResearched("MoistureFarming") then
+            UnlockUpgrade("HydrolysisReactor_MoistureFarming")
+        end
     end
 
     if DisableMOXIE then

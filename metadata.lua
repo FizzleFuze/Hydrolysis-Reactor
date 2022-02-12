@@ -1,6 +1,5 @@
 return PlaceObj('ModDef', {
 	'title', "Hydrolysis Reactor",
-	'description', "",
 	'image', "thumbnail.png",
 	'last_changes', "https://github.com/FizzleFuze/Hydrolysis-Reactor/blob/master/changelog.md",
 	'ignore_files', {
@@ -13,12 +12,13 @@ return PlaceObj('ModDef', {
 		"*.png",
 	},
 	'id', "L8ABBVI",
+	'steam_id', "2750463289",
 	'pops_desktop_uuid', "8738a3d7-d970-4f74-8c2a-4e53c85b071d",
 	'pops_any_uuid', "17c1ba2f-8bf5-4e29-b561-775ac45bc85b",
 	'author', "Fizzle_Fuze",
 	'version_major', 1,
-	'version_minor', 1,
-	'version', 69,
+	'version_minor', 2,
+	'version', 70,
 	'lua_revision', 1009413,
 	'saved_with_revision', 1010838,
 	'code', {
@@ -27,6 +27,6 @@ return PlaceObj('ModDef', {
 		"Code/HydrolysisReactor.lua",
 	},
 	'has_options', true,
-	'saved', 1644615402,
+	'saved', 1644708889,
 	'TagBuildings', true,
 })
