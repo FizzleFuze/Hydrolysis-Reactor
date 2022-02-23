@@ -1,60 +1,8 @@
---Copyright
---[[
-*******************************************************************************
-Fizzle_Fuze's Surviving Mars Mods
-Copyright (c) 2022 Fizzle Fuze Enterprises (mods@fizzlefuze.com)
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-  If your software can interact with users remotely through a computer
-network, you should also make sure that it provides a way for users to
-get its source.  For example, if your program is a web application, its
-interface could display a "Source" link that leads users to an archive
-of the code.  There are many ways you could offer source, and different
-solutions will be better for different programs; see section 13 for the
-specific requirements.
-
-  You should also get your employer (if you work as a programmer) or school,
-if any, to sign a "copyright disclaimer" for the program, if necessary.
-For more information on this, and how to apply and follow the GNU AGPL, see
-<https://www.gnu.org/licenses/>.
-*******************************************************************************
---]]
+--see Info/LICENSE for license and copyright info
 
 --wrapper logging function for this file
 local function Log(...)
-        Fizzle_FuzeLogMessage("BuildingTemplate", ...)
-end
-
---translation strings
-local Translate = { ID = {}, Text = {} }
-
-Translate.Text['display_name'] = "Hydrolysis Reactor"
-Translate.Text['display_name_pl'] = "Hydrolysis Reactors"
-Translate.Text['description'] = "Extracts Oxygen from Water.<newline><newline>All extractors raise dust resulting in more frequent maintenance for buildings in the grey area."
-Translate.Text['upgrade2_display_name'] = "Advanced Reactions"
-Translate.Text['upgrade2_description'] = "Advanced Reactions allow excess energy from hydrogen atoms to be used in the power grid."
-Translate.Text['upgrade3_display_name'] = "Moisture Farming"
-Translate.Text['upgrade3_description'] = "Allows reactors to take moisture from the atmosphere to produce more oxygen and power."
-Translate.Text['encyclopedia_text'] = "Uses the power of science to extract oxygen from water."
-
---get every string a unique ID
-for k, _ in pairs(Translate.Text) do
-        Translate.ID[k] = RandomLocId()
-        if not Translate.ID[k] then
-                Log("ERROR", "Could not find valid translation ID for '", k, "'!")
-        end
+        FF.Func.LogMessage("BuildingTemplate", ...)
 end
 
 function OnMsg.ClassesPostprocess()
@@ -85,16 +33,16 @@ function OnMsg.ClassesPostprocess()
                         'upgrade1_upgrade_cost_Concrete', 2000,
                         'upgrade1_upgrade_cost_Polymers', 5000,
                         'upgrade2_id', "HydrolysisReactor_AdvancedReactions",
-                        'upgrade2_display_name', T(Translate.ID['upgrade2_display_name'], Translate.Text['upgrade2_display_name']),
-                        'upgrade2_description', T(Translate.ID['upgrade2_description'], Translate.Text['upgrade2_description']),
+                        'upgrade2_display_name', FF.Funcs.Translate("Advanced Reactions"),
+                        'upgrade2_description', FF.Funcs.Translate("Advanced Reactions allow excess energy from hydrogen atoms to be used in the power grid."),
                         'upgrade2_icon', "UI/Icons/Upgrades/eternal_fusion_01.tga",
                         'upgrade2_mod_prop_id_1', "electricity_production",
                         'upgrade2_add_value_1', 0,
                         'upgrade2_upgrade_cost_Electronics', 2000,
                         'upgrade2_upgrade_cost_PreciousMetals', 1000,
                         'upgrade3_id', "HydrolysisReactor_MoistureFarming",
-                        'upgrade3_display_name', T(Translate.ID['upgrade3_display_name'], Translate.Text['upgrade3_display_name']),
-                        'upgrade3_description', T(Translate.ID['upgrade3_description'], Translate.Text['upgrade3_description']),
+                        'upgrade3_display_name', FF.Funcs.Translate("Moisture Farming"),
+                        'upgrade3_description', FF.Funcs.Translate("Allows reactors to take moisture from the atmosphere to produce more oxygen and power."),
                         'upgrade3_icon', "UI/Icons/Upgrades/hygroscopic_coating_01.tga",
                         'upgrade3_mod_prop_id_1', "air_production",
                         'upgrade3_mul_value_1', 50,
@@ -105,16 +53,16 @@ function OnMsg.ClassesPostprocess()
                         'maintenance_threshold_base', 150000,
                         'sight_category', "Additional Buildings",
                         'sight_satisfaction', 5,
-                        'display_name', T(Translate.ID['display_name'], Translate.Text['display_name']),
-                        'display_name_pl', T(Translate.ID['display_name_pl'], Translate.Text['display_name_pl']),
-                        'description', T(Translate.ID['description'], Translate.Text['description']),
+                        'display_name', FF.Funcs.Translate("Hydrolysis Reactor"),
+                        'display_name_pl', FF.Funcs.Translate("Hydrolysis Reactors"),
+                        'description', FF.Funcs.Translate("Extracts Oxygen from Water.<newline><newline>All extractors raise dust resulting in more frequent maintenance for buildings in the grey area."),
                         'build_category', "Life-Support",
                         'display_icon', CurrentModPath.."UI/Icons/electrolyzer.png",
                         'build_pos', 5,
                         'entity', "Moxie",
                         'show_range', true,
                         'encyclopedia_id', "HydrolysisReactor",
-                        'encyclopedia_text', T(Translate.ID['encyclopedia_text'], Translate.Text['encyclopedia_text']),
+                        'encyclopedia_text', FF.Funcs.Translate("Uses the power of science to extract oxygen from water.")
                         'encyclopedia_image', "UI/Encyclopedia/Electrolyzer.tga",
                         'label1', "OutsideBuildings",
                         'label2', "OutsideBuildingsTargets",
@@ -128,6 +76,5 @@ function OnMsg.ClassesPostprocess()
                         'water_production', 2000,
                         'exploitation_resource', "Water",
                 })
-
         end
 end
