@@ -2,7 +2,7 @@
 
 --wrapper logging function for this file
 local function Log(...)
-        FF.Func.LogMessage("BuildingTemplate", ...)
+        FF.Funcs.LogMessage(CurrentModDef.title, "BuildingTemplate", ...)
 end
 
 function OnMsg.ClassesPostprocess()
@@ -62,7 +62,7 @@ function OnMsg.ClassesPostprocess()
                         'entity', "Moxie",
                         'show_range', true,
                         'encyclopedia_id', "HydrolysisReactor",
-                        'encyclopedia_text', FF.Funcs.Translate("Uses the power of science to extract oxygen from water.")
+                        'encyclopedia_text', FF.Funcs.Translate("Uses the power of science to extract oxygen from water."),
                         'encyclopedia_image', "UI/Encyclopedia/Electrolyzer.tga",
                         'label1', "OutsideBuildings",
                         'label2', "OutsideBuildingsTargets",

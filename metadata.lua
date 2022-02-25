@@ -1,4 +1,4 @@
-return PlaceObj('ModDef', {
+ return PlaceObj('ModDef', {
 	'title', "Hydrolysis Reactor",
 	'image', "Images/thumbnail.png",
 	'last_changes', "https://github.com/Surviving-Mars-Mods/Hydrolysis-Reactor",
