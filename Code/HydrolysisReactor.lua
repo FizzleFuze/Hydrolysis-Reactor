@@ -2,7 +2,7 @@
 
 --wrapper logging function for this file
 local function Log(...)
-    FF.Funcs.LogMessage("HydrolysisReactor", ...)
+    FF.Funcs.LogMessage(CurrentModDef.title, "HydrolysisReactor", ...)
 end
 
 --class def
@@ -53,7 +53,6 @@ end
 
 function HydrolysisReactor:BuildingUpdate()
     if self.working then
-        Log("Tick")
         self:ProduceSupply("water", self.air_production)
     end
     RebuildInfopanel(self)
