@@ -25,7 +25,7 @@ DefineClass.HydrolysisReactor = {
 
     anim_moments_thread = false,
     water_production = 2000,
-    air_production = 3000,
+    air_production = 2000,
     electricity_production = 0,
 }
 
@@ -95,6 +95,7 @@ function HydrolysisReactor:DepositChanged()
     local deposit_multiplier = self:GetCurrentDepositQualityMultiplier()
     local amount = MulDivRound(self:GetClassValue("water_production"), deposit_multiplier, 100)
     self:SetBase("water_production", amount)
+    self:SetBase("oxygen_production", amount)
     self:UpdateWorking()
 end
 

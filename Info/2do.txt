@@ -1,8 +1,0 @@
-2do:
-    -> Do one step at a time <-
-    [Plan, Create, Test] Task 1 1
-        [Plan, Create, Test] Sub-Task 1
-
-2do:
-    - Stop extracting water when not needing the oxygen.
-      - Game doesn't seem to stop oxygen production when it goes to waste.

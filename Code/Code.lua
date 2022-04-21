@@ -1,8 +1,9 @@
 --see Info/LICENSE for license and copyright info
+--FF.Lib.Debug = true
 
 --wrapper logging function for this file
 local function Log(...)
-    FF.Funcs.LogMessage("Code", ...)
+    FF.Funcs.LogMessage("Hydrolysis-Reactor", "Code", ...)
 end
 
 --unlock upgrade
@@ -19,13 +20,15 @@ local function UpdateOptions()
     Log("BEGIN UpdateOptions()")
 
     if IsDlcAccessible("picard") then
+        Log("Picard DLC installed")
         Entity = "Electrolyzer"
     elseif IsDlcAccessible("contentpack3") then
-        Entity = WaterExtractorCP3
+        Log("Content Pack 3 installed")
+        Entity = "WaterExtractorCP3"
     end
 
     if Entity and ClassTemplates.Building.FFHydrolysisReactor then
-        Log("Updating Class Template...")
+        Log("Updating class template to: ", Entity)
         ClassTemplates.Building.FFHydrolysisReactor.entity = Entity
     end
 
@@ -70,3 +73,6 @@ function OnMsg.ApplyModOptions(id)
         UpdateOptions()
     end
 end
+
+OnMsg.MapGenerated = UpdateOptions
+

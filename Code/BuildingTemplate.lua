@@ -72,7 +72,7 @@ function OnMsg.ClassesPostprocess()
                         'demolish_sinking', range(1, 5),
                         'demolish_debris', 85,
                         'disabled_in_environment1', "Asteroid",
-                        'air_production', 3000,
+                        'air_production', 2000,
                         'water_production', 2000,
                         'exploitation_resource', "Water",
                 })

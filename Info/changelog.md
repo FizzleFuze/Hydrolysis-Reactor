@@ -1,4 +1,8 @@
-## Version 1.3
+## Version 1.4
+- Base production set to 2 units for both oxygen and water
+- Fixed bug causing model to not display correctly
+
+### Version 1.3
 - Updated to use library
 
 ### Version 1.2

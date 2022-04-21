@@ -1,5 +1,6 @@
- return PlaceObj('ModDef', {
+return PlaceObj('ModDef', {
 	'title', "Hydrolysis Reactor",
+	'description', "Extract oxygen from water deposits with the power of science! Optional upgrades increase oxygen production as well as provide surplus power. https://github.com/Surviving-Mars-Mods/Hydrolysis-Reactor",
 	'image', "Images/thumbnail.png",
 	'last_changes', "https://github.com/Surviving-Mars-Mods/Hydrolysis-Reactor",
 	'ignore_files', {
@@ -8,7 +9,6 @@
 		"*.idea/*",
 		"*src/*",
 		"*.iml",
-		"Images/2do.txt",
 		"*.png",
 	},
 	'id', "FIZZLE7",
@@ -17,8 +17,8 @@
 	'pops_any_uuid', "17c1ba2f-8bf5-4e29-b561-775ac45bc85b",
 	'author', "Fizzle_Fuze",
 	'version_major', 1,
-	'version_minor', 3,
-	'version', 69,
+	'version_minor', 4,
+	'version', 45,
 	'lua_revision', 1009413,
 	'saved_with_revision', 1010838,
 	'code', {
@@ -27,6 +27,6 @@
 		"Code/HydrolysisReactor.lua",
 	},
 	'has_options', true,
-	'saved', 1644708889,
+	'saved', 1650501537,
 	'TagBuildings', true,
 })
