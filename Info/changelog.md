@@ -1,4 +1,7 @@
-## Version 1.4
+## Version 1.5
+- Oxygen production now scales with water deposit grade.
+
+### Version 1.4
 - Base production set to 2 units for both oxygen and water
 - Fixed bug causing model to not display correctly
 

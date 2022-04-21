@@ -53,7 +53,8 @@ end
 
 function HydrolysisReactor:BuildingUpdate()
     if self.working then
-        self:ProduceSupply("water", self.air_production)
+        self:ProduceSupply("water", self.water_production)
+        self:ProduceSupply("air", self.air_production)
     end
     RebuildInfopanel(self)
 end
@@ -95,7 +96,7 @@ function HydrolysisReactor:DepositChanged()
     local deposit_multiplier = self:GetCurrentDepositQualityMultiplier()
     local amount = MulDivRound(self:GetClassValue("water_production"), deposit_multiplier, 100)
     self:SetBase("water_production", amount)
-    self:SetBase("oxygen_production", amount)
+    self:SetBase("air_production", amount)
     self:UpdateWorking()
 end
 

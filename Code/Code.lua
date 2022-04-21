@@ -74,5 +74,5 @@ function OnMsg.ApplyModOptions(id)
     end
 end
 
-OnMsg.MapGenerated = UpdateOptions
-
+local Init = UpdateOptions
+OnMsg.MapGenerated = Init
