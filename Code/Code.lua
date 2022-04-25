@@ -15,6 +15,12 @@ end
 
 --setup options and config
 local function UpdateOptions()
+
+    -- yeah, let's just cause an engine fault by not error handling anything... gg devs
+    if not Mods then return end
+    if not Mods.FFHydrolysisReactor then return end
+    if not Mods.FFHydrolysisReactor.options then return end
+
     local DisableMOXIE = CurrentModOptions:GetProperty("DisableMOXIE")
     local HideMOXIE = Mods.FFHydrolysisReactor.options.HideMOXIE
     local Entity
