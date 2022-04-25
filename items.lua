@@ -17,4 +17,9 @@ PlaceObj('ModItemOptionToggle', {
 	'DisplayName', "Disable MOXIEs",
 	'Help', "Disable MOXIEs from being built and working",
 }),
+PlaceObj('ModItemOptionToggle', {
+	'name', "HideMOXIE",
+	'DisplayName', "Hide MOXIEs",
+	'Help', "Hide MOXIEs from the build menu",
+}),
 }

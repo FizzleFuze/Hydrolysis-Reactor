@@ -16,6 +16,7 @@ end
 --setup options and config
 local function UpdateOptions()
     local DisableMOXIE = CurrentModOptions:GetProperty("DisableMOXIE")
+    local HideMOXIE = Mods.FFHydrolysisReactor.options.HideMOXIE
     local Entity
     Log("BEGIN UpdateOptions()")
 
@@ -48,9 +49,17 @@ local function UpdateOptions()
         end
     end
 
+
+    --toggle lock/hidden
     if DisableMOXIE then
         LockBuilding("MOXIE", "disable", FF.Funcs.Translate("Replaced by Hydrolysis Reactor"))
-    else
+    end
+
+    if HideMOXIE then
+        LockBuilding("MOXIE")
+    end
+
+    if not (DisableMOXIE or HideMOXIE) then
         RemoveBuildingLock("MOXIE")
     end
 
