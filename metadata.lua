@@ -18,7 +18,7 @@ return PlaceObj('ModDef', {
 			'version_minor', 6,
 		}),
 	},
-	'id', "FFHydrolysisReactor",
+	'id', "FIZZLE7",
 	'steam_id', "2750463289",
 	'pops_desktop_uuid', "8738a3d7-d970-4f74-8c2a-4e53c85b071d",
 	'pops_any_uuid', "17c1ba2f-8bf5-4e29-b561-775ac45bc85b",

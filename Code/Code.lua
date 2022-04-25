@@ -18,11 +18,11 @@ local function UpdateOptions()
 
     -- yeah, let's just cause an engine fault by not error handling anything... gg devs
     if not Mods then return end
-    if not Mods.FFHydrolysisReactor then return end
-    if not Mods.FFHydrolysisReactor.options then return end
+    if not Mods.FIZZLE7 then return end
+    if not Mods.FIZZLE7.options then return end
 
     local DisableMOXIE = CurrentModOptions:GetProperty("DisableMOXIE")
-    local HideMOXIE = Mods.FFHydrolysisReactor.options.HideMOXIE
+    local HideMOXIE = Mods.FIZZLE7.options.HideMOXIE
     local Entity
     Log("BEGIN UpdateOptions()")
 
